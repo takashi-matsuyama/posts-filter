@@ -169,22 +169,22 @@ if( ! class_exists( 'CCC_Terms_Filter_Ajax_Results' ) ) {
       /* 指定した投稿タイプからタクソノミーを取得 */
       $taxonomies = get_object_taxonomies( $my_post_type, 'objects' );
       $out = array();
-      foreach ( $taxonomies as $taxonomy_slug => $taxonomy ){
+      foreach( $taxonomies as $taxonomy ) {
         /* 投稿に紐付いたタームを取得 */
-        $terms = get_the_terms( $post->ID, $taxonomy_slug );
+        $terms = get_the_terms( $post->ID, $taxonomy->name );
         if ( !empty( $terms ) ) {
           $out[] = '<ul class="list-terms list-terms-'. $taxonomy->name .'">';
           foreach ( $terms as $term ) {
             if ($term->parent === 0) {
-              $out[] = '<li class="list-term-item list-term-parent list-term-'. $term->slug .'" data-list-term="'. $term->slug .'"><a href="'. get_term_link( $term->term_id, $taxonomy_slug ) .'">' . $term->name . '</a></li>';
+              $out[] = '<li class="list-term-item list-term-parent list-term-'. $term->slug .'" data-list-term="'. $term->slug .'"><a href="'. get_term_link( $term->term_id, $taxonomy->name ) .'">' . $term->name . '</a></li>';
             } else {
               $parent_id = $term->parent;
-              $parent = get_term_by('id', $parent_id, $taxonomy_slug);
-              $out[] = '<li class="list-term-item list-term-children list-term-'. $term->slug .'" data-list-term="'. $term->slug .'" data-list-term-parent="'. $parent->slug .'"><a href="'. get_term_link( $term->term_id, $taxonomy_slug ) .'">' . $term->name . '</a></li>';
+              $parent = get_term_by('id', $parent_id, $taxonomy->name);
+              $out[] = '<li class="list-term-item list-term-children list-term-'. $term->slug .'" data-list-term="'. $term->slug .'" data-list-term-parent="'. $parent->slug .'"><a href="'. get_term_link( $term->term_id, $taxonomy->name ) .'">' . $term->name . '</a></li>';
             } //endif
           } //endforeach
           $out[] = "</ul>\n";
-        }
+        } //endif
       } //endforeach
       return implode('', $out );
     } //endfunction

@@ -42,7 +42,8 @@ if( ! class_exists( 'CCC_Terms_Filter_Ajax_ShortCode_List' ) ) {
         $style = 1;
       }
       /***** For WordPress Plugin "bogo" : START *****/
-      if( $atts['locale'] === 'bogo' and is_plugin_active( 'bogo/bogo.php' ) ) {
+      /* Detect plugin. For use on Front End and Back End. */
+      if( $atts['locale'] === 'bogo' and in_array( 'bogo/bogo.php', (array) get_option( 'active_plugins', array() ) ) ) {
         $locale = 'data-ccc_terms_filter_ajax-article-bogo="'.get_locale().'"';
       } else {
         $locale = null;
@@ -119,7 +120,7 @@ if( ! class_exists( 'CCC_Terms_Filter_Ajax_ShortCode_List' ) ) {
       } // endif
       $taxonomies = get_object_taxonomies( $my_post_type, 'objects' );
       unset( $taxonomies['post_format'] ); // 特定のタクソノミーを除外（PHP：連想配列から要素を除外）
-      foreach ( $taxonomies as $taxonomy_slug => $taxonomy ) {
+      foreach( $taxonomies as $taxonomy ) {
         echo '<div class="select-taxonomy" id="select-taxonomy-'. $taxonomy->name .'" data-select-taxonomy="'. $taxonomy->name .'">';
         echo '<div class="select-taxonomy-title ccc-terms_filter_ajax-accordion-trigger"><a href="#"><p class="text">'. $taxonomy->label .'</p>';
         echo '<div class="accordion-icon"><span class="accordion-icon-bar"></span><span class="accordion-icon-bar"></span></div>';
