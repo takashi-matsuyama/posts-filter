@@ -5,7 +5,7 @@ Tags: posts filter, filter, taxonomy, term
 Requires at least: 4.8
 Tested up to: 5.6
 Requires PHP: 5.4.0
-Stable tag: 1.0.1
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,7 @@ This plugin is simple. You can filter posts by taxonomy terms with Ajax just a i
 
 * **Shortcode:** `[ccc_posts_filter_list post_type="" posts_per_page="" class="" style=""]`
 
+Detailed usage is under preparation.
 
 == Installation ==
 
@@ -34,8 +35,11 @@ This plugin is simple. You can filter posts by taxonomy terms with Ajax just a i
 
 == Changelog ==
 
+= 1.1.0 =
+Add shortcode attribute (`locale=""`) markup of thumbnails and modify CSS.
+
 = 1.0.1 =
-Modify CSS.
+Add shortcode attribute (`style=""`) and modify CSS.
 
 = 1.0.0 =
 Initial release.

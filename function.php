@@ -22,15 +22,13 @@ class CCC_Terms_Filter_Ajax {
   } //endfunction
 
   public function styles() {
-    wp_enqueue_style( 'ccc_terms_filter_ajax-css', CCCTERMSFILTERAJAX_PLUGIN_URL.'/assets/filter.css', array(), CCCTERMSFILTERAJAX_PLUGIN_VERSION, 'all');
+    wp_enqueue_style( 'ccc_terms_filter_ajax', CCCTERMSFILTERAJAX_PLUGIN_URL.'/assets/filter.css', array(), CCCTERMSFILTERAJAX_PLUGIN_VERSION, 'all');
   } //endfunction
 
   public function scripts() {
-    $handle = 'ccc_terms_filter_ajax-js';
+    $handle = 'ccc_terms_filter_ajax';
     $file = 'filter.js';
     wp_register_script( $handle, CCCTERMSFILTERAJAX_PLUGIN_URL.'/assets/'.$file, array( 'jquery' ), CCCTERMSFILTERAJAX_PLUGIN_VERSION, true );
-    wp_enqueue_script( $handle );
-
     $action = 'ccc_terms_filter_ajax-action';
     wp_localize_script( $handle, 'CCC_TERMS_FILTER_AJAX',
                        array(
@@ -52,16 +50,4 @@ class CCC_Terms_Filter_Ajax {
     die();
   } //endfunction
 
-
 } //endclass
-
-
-
-
-
-
-
-
-
-
-

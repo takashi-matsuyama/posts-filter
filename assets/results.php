@@ -1,13 +1,12 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) {
   exit; // Exit if accessed directly.
-}
+} // endif
 
 if( ! class_exists( 'CCC_Terms_Filter_Ajax_Results' ) ) {
   class CCC_Terms_Filter_Ajax_Results {
 
     public static function action() {
-
       /****** 初期設定 ******/
 
       /*** post_type用 ***/
@@ -30,9 +29,7 @@ if( ! class_exists( 'CCC_Terms_Filter_Ajax_Results' ) ) {
       } // endif
 
 
-
-      /* tax_query用 */
-      //$taxqueries = [];
+      /*** tax_query用 ***/
       $taxqueries = array('relation' => 'AND');
       $taxonomies = get_object_taxonomies( $my_post_type, 'objects' );
       foreach ( $taxonomies as $taxonomy ) {
@@ -89,9 +86,8 @@ if( ! class_exists( 'CCC_Terms_Filter_Ajax_Results' ) ) {
       } // endforeach
 
 
-      /* meta_query用 */
-      $metaqueries[] = null;
-
+      /*** meta_query用 ***/
+      $metaqueries = null;
 
       /*** 表示数の定義（指定が無ければ管理画面の表示設定（表示する最大投稿数）の値を取得） ***/
       $ccc_posts_per_page = absint( $_POST['ccc-posts_per_page'] ); //負ではない整数に変換
@@ -101,11 +97,10 @@ if( ! class_exists( 'CCC_Terms_Filter_Ajax_Results' ) ) {
         $posts_per_page = get_option('posts_per_page');
       } // endif
 
-
-      /* すでに表示されている記事リストの個数 */
+      /*** すでに表示されている記事リストの個数 ***/
       $looplength = absint( $_POST['looplength'] ); //負ではない整数に変換
 
-      $args= array(
+      $args = array(
         'post_type' => $my_post_type,
         'post_status' => 'publish', //公開済みのページのみ取得
         'posts_per_page' => $posts_per_page, //表示数を指定（初期値：指定しない場合は管理画面の表示設定の値）
@@ -116,15 +111,21 @@ if( ! class_exists( 'CCC_Terms_Filter_Ajax_Results' ) ) {
         'orderby' => array( 'type' => 'ASC', 'menu_order' => 'ASC' ),
       );
 
+      /***** For WordPress Plugin "bogo" : START *****/
+      if( $_POST['bogo'] ) {
+        $locale = sanitize_text_field( $_POST['bogo'] );
+        $args['lang'] = $locale;
+      }
+      /***** For WordPress Plugin "bogo" : END *****/
+
       $the_query = new WP_Query($args);
 ?>
-
 
 
 <?php
       if( $the_query->have_posts() ) {
         $count = 0;
-        while( $the_query->have_posts() ) :
+        while( $the_query->have_posts() ) {
         $the_query->the_post();
         $count++;
 ?>
@@ -133,9 +134,9 @@ if( ! class_exists( 'CCC_Terms_Filter_Ajax_Results' ) ) {
     <a href="<?php the_permalink(); ?>">
       <?php
         if( has_post_thumbnail() ) {
-          echo '<div class="img-post-thumbnail" style="background-image: url('.get_the_post_thumbnail_url($the_query->post->ID, 'large').');"></div>';
+          echo '<div class="img-post-thumbnail has_post_thumbnail"><img src="'.get_the_post_thumbnail_url($the_query->post->ID, 'large').'" alt="'.$the_query->post->post_title.'" loading="lazy" /></div>';
         } else {
-          echo '<div class="img-post-thumbnail" style="background-image: url('.CCC_Post_Thumbnail::get_first_image_url($the_query->post).');"></div>';
+          echo '<div class="img-post-thumbnail has_post_thumbnail-no"><img src="'.CCC_Post_Thumbnail::get_first_image_url($the_query->post).'" alt="'.$the_query->post->post_title.'" loading="lazy" /></div>';
         }
       ?>
     </a>
@@ -146,7 +147,7 @@ if( ! class_exists( 'CCC_Terms_Filter_Ajax_Results' ) ) {
     <?php echo self::my_taxonomies_terms_all( $my_post_type ); ?>
   </div><!-- /.terms-post -->
 </div><!-- /.list-ccc_terms_filter_ajax -->
-<?php endwhile; ?>
+<?php } //endwhile; ?>
 <div id="ccc-terms_filter_ajax-wp_query-count">
   <span class="ccc-terms_filter_ajax-post-count"></span><span class="ccc-terms_filter_ajax-found_posts-count"><?php echo $the_query->found_posts; ?></span>
 </div><!-- /#ccc-terms_filter_ajax-wp_query-count -->
@@ -163,20 +164,13 @@ if( ! class_exists( 'CCC_Terms_Filter_Ajax_Results' ) ) {
 
 
     /*** 指定した投稿タイプの投稿に紐付いたカスタム分類のタームを取得する関数（START） ***/
-    // （タクソノミーと）タームのリンクを取得する
-    public static function my_taxonomies_terms_all($my_post_type){
-      /***
-    // 投稿 ID から投稿オブジェクトを取得
-    $post = get_post( $post->ID );
-    // その投稿から投稿タイプを取得
-    $my_post_type = $post->post_type;
-  ***/
-      // 指定した投稿タイプからタクソノミーを取得
+    /* （タクソノミーと）タームのリンクを取得する */
+    public static function my_taxonomies_terms_all($my_post_type) {
+      /* 指定した投稿タイプからタクソノミーを取得 */
       $taxonomies = get_object_taxonomies( $my_post_type, 'objects' );
-      // print_r( $taxonomies ); // デバッグ
       $out = array();
       foreach ( $taxonomies as $taxonomy_slug => $taxonomy ){
-        // 投稿に紐付いたタームを取得
+        /* 投稿に紐付いたタームを取得 */
         $terms = get_the_terms( $post->ID, $taxonomy_slug );
         if ( !empty( $terms ) ) {
           $out[] = '<ul class="list-terms list-terms-'. $taxonomy->name .'">';

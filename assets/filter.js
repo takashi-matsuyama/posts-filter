@@ -2,7 +2,7 @@
 * Author: Takashi Matsuyama
 * Author URI: https://profiles.wordpress.org/takashimatsuyama/
 * Description: WordPressのタクソノミーでANDフィルタ表示、タームでORフィルタ表示するスクリプト
-* Version: 1.0.0
+* Version: 1.1.0 or later
 */
 (function($){
   /*** 初期設定 ***/
@@ -157,7 +157,7 @@
       list_filter_elm.fadeIn(), // 全て表示
       select_reset_common_elm.hide(), // すべてのリセットボタンを非表示
       /* リセット：アイテム件数 */
-      count_series_number.text(list_filter_elm.length), // 全てのアイテム件数で上書き
+      count_series_number.text(list_filter_elm.length) // 全てのアイテム件数で上書き
     );
     my_promise.done( function() {
       /* すべてのcheckboxのcheckedをリセット */
@@ -302,7 +302,12 @@
   var post_type = article_filter_elm.data('ccc_terms_filter_ajax-article-post_type');
   var article_taxonomy = article_filter_elm.data('ccc_terms_filter_ajax-article-taxonomy');
   var article_term = article_filter_elm.data(article_filter_data_term);
-  var posts_per_page_value = post_area_elm.data('ccc_terms_filter_ajax-posts_per_page-filter');
+
+
+
+  var posts_per_page_value = post_area_elm.data('ccc_terms_filter_ajax-posts_per_page-filter'); //末尾 -filter を削除 shortcode-list.php:103 に1箇所
+
+
 
   var data_set = {};
   /*** Ajaxフック用 ***/
@@ -318,6 +323,17 @@
   } //endif
   /* 現在表示中の投稿数を送信データに追加 */
   data_set['looplength'] = looplength_val;
+
+
+  /***** For WordPress Plugin "bogo" : START *****/
+  /* WordPressの現在のロケール情報を送信データに追加 */
+  var bogo_locale = article_filter_elm.data('ccc_terms_filter_ajax-article-bogo');
+  if( bogo_locale ) {
+    data_set['bogo'] = bogo_locale;
+  }
+  /***** For WordPress Plugin "bogo" : END *****/
+
+
   /* 読み込み中のローディングを表示 */
   loader.show();
   /* WPクエリ（wp_ajax_）にajaxでPOSTして第一引数をhtml */

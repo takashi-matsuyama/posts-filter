@@ -10,6 +10,8 @@ if( ! class_exists( 'CCC_Terms_Filter_Ajax_ShortCode_List' ) ) {
   class CCC_Terms_Filter_Ajax_ShortCode_List {
 
     public static function html($atts) {
+      wp_enqueue_script( 'ccc_terms_filter_ajax' );
+
       ob_start(); // returnでHTMLを返す：出力のバッファリングを有効にする
 
       $atts = shortcode_atts(array(
@@ -17,6 +19,7 @@ if( ! class_exists( 'CCC_Terms_Filter_Ajax_ShortCode_List' ) ) {
         "posts_per_page" => '',
         "class" => '',
         "style" => '',
+        "locale" => '',
       ),$atts);
       if( $atts['post_type'] ) {
         $my_post_type = $atts['post_type'];
@@ -38,10 +41,17 @@ if( ! class_exists( 'CCC_Terms_Filter_Ajax_ShortCode_List' ) ) {
       } else {
         $style = 1;
       }
+      /***** For WordPress Plugin "bogo" : START *****/
+      if( $atts['locale'] === 'bogo' and is_plugin_active( 'bogo/bogo.php' ) ) {
+        $locale = 'data-ccc_terms_filter_ajax-article-bogo="'.get_locale().'"';
+      } else {
+        $locale = null;
+      };
+      /***** For WordPress Plugin "bogo" : END *****/
+
 
       /*** 初期設定 ***/
       /* URLからタームとタクソノミーのオブジェクトを取得 */
-      //var_dump( get_queried_object() );
       $term_object = get_queried_object(); // タームオブジェクトを取得
 
       $my_term_id = $term_object->term_id; // タームスID
@@ -71,7 +81,7 @@ if( ! class_exists( 'CCC_Terms_Filter_Ajax_ShortCode_List' ) ) {
       $the_query = new WP_Query($args);
 ?>
 
-<div id="ccc-terms_filter_ajax-article" data-ccc_terms_filter_ajax-article-taxonomy="<?php echo $my_term_taxonomy; ?>" data-ccc_terms_filter_ajax-article-term="<?php echo $my_term_slug; ?>" data-ccc_terms_filter_ajax-article-post_type="<?php echo $my_post_type; ?>" <?php echo $class; ?> data-ccc_posts_filter-style="<?php echo $style; ?>">
+<div id="ccc-terms_filter_ajax-article" data-ccc_terms_filter_ajax-article-taxonomy="<?php echo $my_term_taxonomy; ?>" data-ccc_terms_filter_ajax-article-term="<?php echo $my_term_slug; ?>" data-ccc_terms_filter_ajax-article-post_type="<?php echo $my_post_type; ?>" <?php echo $class; ?> data-ccc_posts_filter-style="<?php echo $style; ?>" <?php echo $locale; ?>>
   <div id="ccc-terms_filter_ajax-inner" class="clearfix">
     <div class="ccc-terms_filter_ajax-header clearfix">
       <p class="ccc-terms_filter_ajax-count">
@@ -91,7 +101,7 @@ if( ! class_exists( 'CCC_Terms_Filter_Ajax_ShortCode_List' ) ) {
   </div><!-- /.ccc-terms_filter_ajax-inner -->
 </div><!-- /#ccc-terms_filter_ajax-article -->
 <?php
-      return ob_get_clean();  // returnでHTMLを返す：関数からHTMLを返し、それをいろいろ編集したり、処理を加えてから出力する場面で有効：バッファリングの内容を出力した後にバッファリングを削除
+      return ob_get_clean(); // returnでHTMLを返す：関数からHTMLを返し、それをいろいろ編集したり、処理を加えてから出力する場面で有効：バッファリングの内容を出力した後にバッファリングを削除
     } //endfunction
 
     /*** すべてのカスタム分類のタームを取得する関数（START） ***/

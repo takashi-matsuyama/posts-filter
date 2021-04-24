@@ -214,13 +214,28 @@ body[data-ccc_useragent="desktop"] #ccc-terms_filter_ajax-article[data-ccc_posts
   margin: 0 1% 1% 0;
   position: relative;
 }
+#ccc-terms_filter_ajax-article[data-ccc_posts_filter-style="1"] #ccc-terms_filter_ajax-inner .list-ccc_terms_filter_ajax .img-post-thumbnail {
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 */
+  position: relative;
+}
+#ccc-terms_filter_ajax-article[data-ccc_posts_filter-style="1"] #ccc-terms_filter_ajax-inner .list-ccc_terms_filter_ajax .img-post-thumbnail img {
+  object-fit: cover;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 #ccc-terms_filter_ajax-article[data-ccc_posts_filter-style="1"] #ccc-terms_filter_ajax-inner .wrap-select-taxonomy {
   display: table;
   table-layout: fixed;
   width: 100%;
 }
 #ccc-terms_filter_ajax-article[data-ccc_posts_filter-style="1"] #ccc-terms_filter_ajax-inner #ccc-terms_filter_ajax-nav_taxonomy.tax-oppend {
-  display: block; /* JSで制御 */
+  display: block; /* JS */
   -webkit-animation: fadeIn 0.3s linear 0s 1;
   -moz-animation: fadeIn 0.3s linear 0s 1;
   -ms-animation: fadeIn 0.3s linear 0s 1;
