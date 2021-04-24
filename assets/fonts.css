@@ -1,0 +1,42 @@
+@font-face {
+  font-family: 'icomoon-ccc_terms_filter_ajax';
+  src:  url('fonts/icomoon-ccc_terms_filter_ajax.eot?tf76l0');
+  src:  url('fonts/icomoon-ccc_terms_filter_ajax.eot?tf76l0#iefix') format('embedded-opentype'),
+    url('fonts/icomoon-ccc_terms_filter_ajax.ttf?tf76l0') format('truetype'),
+    url('fonts/icomoon-ccc_terms_filter_ajax.woff?tf76l0') format('woff'),
+    url('fonts/icomoon-ccc_terms_filter_ajax.svg?tf76l0#icomoon-ccc_terms_filter_ajax') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-ccc_terms_filter_ajax-"], [class*=" icon-ccc_terms_filter_ajax-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon-ccc_terms_filter_ajax' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-ccc_terms_filter_ajax-close:before {
+  content: "\f00d";
+}
+.icon-ccc_terms_filter_ajax-remove:before {
+  content: "\f00d";
+}
+.icon-ccc_terms_filter_ajax-times:before {
+  content: "\f00d";
+}
+.icon-ccc_terms_filter_ajax-refresh:before {
+  content: "\f021";
+}
+.icon-ccc_terms_filter_ajax-filter:before {
+  content: "\f0b0";
+}
