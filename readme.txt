@@ -5,7 +5,7 @@ Tags: posts filter, filter, taxonomy, term
 Requires at least: 4.8
 Tested up to: 5.7
 Requires PHP: 5.4.0
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,20 +29,10 @@ Detailed usage is under preparation.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
 3. Use shortcodes to display the posts filter.
 
+== Discover More ==
 
-== Screenshots ==
-
+This plugin is [developed on GitHub](https://github.com/takashi-matsuyama/posts-filter)
 
 == Changelog ==
 
-= 1.1.1 =
-[Bug fix] About is_plugin_active not working when locale="bogo".
-
-= 1.1.0 =
-Add shortcode attribute (`locale=""`) markup of thumbnails and modify CSS.
-
-= 1.0.1 =
-Add shortcode attribute (`style=""`) and modify CSS.
-
-= 1.0.0 =
-Initial release.
+See the [release notes on GitHub](https://github.com/takashi-matsuyama/posts-filter/releases).

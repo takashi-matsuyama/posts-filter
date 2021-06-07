@@ -2,15 +2,15 @@
 
 This is the development repository for Posts Filter, a WordPress plugin that filters posts by taxonomy terms with Ajax. You can also download the plugin package installation from the [WordPress.org Plugin Directory](https://wordpress.org/plugins/posts-filter/).
 
-Contributors: takashimatsuyama
-Donate link:
-Tags: posts filter, filter, taxonomy, term
-Requires at least: 4.8
-Tested up to: 5.7
-Requires PHP: 5.4.0
-Stable tag: 1.1.1
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Contributors: takashimatsuyama  
+Donate link:  
+Tags: posts filter, filter, taxonomy, term  
+Requires at least: 4.8  
+Tested up to: 5.7  
+Requires PHP: 5.4.0  
+Stable tag: 1.1.2  
+License: GPLv2 or later  
+License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
 Filter posts by taxonomy terms with Ajax.
 
@@ -33,6 +33,9 @@ Detailed usage is under preparation.
 3. Use shortcodes to display the posts filter.
 
 ## Changelog
+
+### 1.1.2
+Fixed PHP 8.0 warning.
 
 ### 1.1.1
 [Bug fix] About is_plugin_active not working when locale="bogo".

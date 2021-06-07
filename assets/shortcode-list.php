@@ -86,7 +86,7 @@ if( ! class_exists( 'CCC_Terms_Filter_Ajax_ShortCode_List' ) ) {
   <div id="ccc-terms_filter_ajax-inner" class="clearfix">
     <div class="ccc-terms_filter_ajax-header clearfix">
       <p class="ccc-terms_filter_ajax-count">
-        <span class="name"><?php echo $term_name; ?></span><span class="number"><?php echo $the_query->found_posts; ?></span><span class="unit"><?php printf( _n( 'item', 'items', $the_query->post_count, CCCTERMSFILTERAJAX_TEXT_DOMAIN ), $the_query->post_count ); ?></span></p><!-- /.ccc-terms_filter_ajax-count -->
+        <span class="name"><?php echo $my_term_name; ?></span><span class="number"><?php echo $the_query->found_posts; ?></span><span class="unit"><?php printf( _n( 'item', 'items', $the_query->post_count, CCCTERMSFILTERAJAX_TEXT_DOMAIN ), $the_query->post_count ); ?></span></p><!-- /.ccc-terms_filter_ajax-count -->
       <div class="nav-taxonomy-toggle"><a href="#" class="nav-taxonomy-toggle-button"><i class="icon-ccc_terms_filter_ajax-filter"></i><span class="text"><?php _e('Filter', CCCTERMSFILTERAJAX_TEXT_DOMAIN); ?></span></a></div><!-- /.nav-taxonomy-toggle -->
       <p class="select-reset-all"><label class="select-toggle"><i class="icon-ccc_terms_filter_ajax-close"></i><input type="checkbox"><?php _e('Deselect all', CCCTERMSFILTERAJAX_TEXT_DOMAIN); ?></label></p><!-- /.select-reset-all -->
     </div><!-- /.ccc-terms_filter_ajax-header -->

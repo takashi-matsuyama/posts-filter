@@ -90,15 +90,18 @@ if( ! class_exists( 'CCC_Terms_Filter_Ajax_Results' ) ) {
       $metaqueries = null;
 
       /*** 表示数の定義（指定が無ければ管理画面の表示設定（表示する最大投稿数）の値を取得） ***/
-      $ccc_posts_per_page = absint( $_POST['ccc-posts_per_page'] ); //負ではない整数に変換
-      if( $ccc_posts_per_page ) {
-        $posts_per_page = $ccc_posts_per_page;
+      if( isset($_POST['ccc-posts_per_page']) ) {
+        $posts_per_page = absint( $_POST['ccc-posts_per_page'] ); //負ではない整数に変換;
       } else {
         $posts_per_page = get_option('posts_per_page');
       } // endif
 
       /*** すでに表示されている記事リストの個数 ***/
-      $looplength = absint( $_POST['looplength'] ); //負ではない整数に変換
+      if( isset($_POST['looplength']) ) {
+        $looplength = absint( $_POST['looplength'] ); //負ではない整数に変換
+      } else {
+        $looplength = null;
+      }
 
       $args = array(
         'post_type' => $my_post_type,
@@ -112,7 +115,7 @@ if( ! class_exists( 'CCC_Terms_Filter_Ajax_Results' ) ) {
       );
 
       /***** For WordPress Plugin "bogo" : START *****/
-      if( $_POST['bogo'] ) {
+      if( isset($_POST['bogo']) ) {
         $locale = sanitize_text_field( $_POST['bogo'] );
         $args['lang'] = $locale;
       }
