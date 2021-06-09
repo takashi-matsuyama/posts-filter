@@ -136,7 +136,9 @@ if( ! class_exists( 'CCC_Terms_Filter_Ajax_ShortCode_List' ) ) {
             'field'  => 'slug',
             'terms' => $my_term_slug,
           );
-        }
+        } else {
+          $my_taxonomy_term_slug = null;
+        } //endif
         $parent_terms = get_terms( $taxonomy->name, $args );
         foreach ( $parent_terms as $parent_term ) {
           $parent_term_args = array(

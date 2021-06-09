@@ -3,7 +3,7 @@
  * Plugin Name: Posts Filter
  * Plugin URI: https://wordpress.org/plugins/posts-filter
  * Description: Filter posts by taxonomy terms with Ajax.
- * Version: 1.1.2
+ * Version: 1.1.3
  * Requires at least: 4.8
  * Requires PHP: 5.4.0
  * Author: Takashi Matsuyama
