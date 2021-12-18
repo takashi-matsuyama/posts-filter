@@ -8,7 +8,7 @@ Tags: posts filter, filter, taxonomy, term
 Requires at least: 4.8  
 Tested up to: 5.8  
 Requires PHP: 5.4.0  
-Stable tag: 1.1.4  
+Stable tag: 1.2.0  
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,6 +33,10 @@ Detailed usage is under preparation.
 3. Use shortcodes to display the posts filter.
 
 ## Changelog
+
+### 1.2.0
+
+Changed the specifications of the term menu.
 
 ### 1.1.4
 

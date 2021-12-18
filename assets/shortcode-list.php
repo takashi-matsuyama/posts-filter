@@ -12,8 +12,7 @@ if (!class_exists('CCC_Terms_Filter_Ajax_ShortCode_List')) {
 
     public static function html($atts)
     {
-      wp_enqueue_style('ccc_terms_filter_ajax');
-      wp_enqueue_script('ccc_terms_filter_ajax');
+      wp_enqueue_script('ccc_terms_filter_ajax-list');
 
       ob_start(); // returnでHTMLを返す：出力のバッファリングを有効にする
 

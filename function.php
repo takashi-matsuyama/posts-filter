@@ -26,12 +26,12 @@ class CCC_Terms_Filter_Ajax
 
   public function styles()
   {
-    wp_register_style('ccc_terms_filter_ajax', CCCTERMSFILTERAJAX_PLUGIN_URL . '/assets/filter.css', array(), CCCTERMSFILTERAJAX_PLUGIN_VERSION, 'all');
+    wp_enqueue_style('ccc_terms_filter_ajax-list', CCCTERMSFILTERAJAX_PLUGIN_URL . '/assets/filter.css', array(), CCCTERMSFILTERAJAX_PLUGIN_VERSION, 'all');
   } //endfunction
 
   public function scripts()
   {
-    $handle = 'ccc_terms_filter_ajax';
+    $handle = 'ccc_terms_filter_ajax-list';
     $file = 'filter.js';
     wp_register_script($handle, CCCTERMSFILTERAJAX_PLUGIN_URL . '/assets/' . $file, array('jquery'), CCCTERMSFILTERAJAX_PLUGIN_VERSION, true);
     $action = 'ccc_terms_filter_ajax-action';
