@@ -8,7 +8,7 @@ Tags: posts filter, filter, taxonomy, term
 Requires at least: 4.8  
 Tested up to: 5.8  
 Requires PHP: 5.4.0  
-Stable tag: 1.2.0  
+Stable tag: 1.3.0  
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,7 +22,11 @@ This plugin is simple. You can filter posts by taxonomy terms with Ajax just a i
 
 ## Usage
 
-- **Shortcode:** `[ccc_posts_filter_list post_type="" posts_per_page="" class="" style=""]`
+- **Shortcode:** `[ccc_posts_filter_list]`
+- **Shortcode:** `[ccc_posts_filter_list posts_per_page="" class="" style=""]`
+- **Shortcode:** `[ccc_posts_filter_list post_type=""]`
+- **Shortcode:** `[ccc_posts_filter_list term_parent_slug=""]`
+- **Shortcode:** `[ccc_posts_filter_list taxonomy_name=""]`
 
 Detailed usage is under preparation.
 
@@ -33,6 +37,10 @@ Detailed usage is under preparation.
 3. Use shortcodes to display the posts filter.
 
 ## Changelog
+
+### 1.3.0
+
+Add the ability to specify the initial term and taxonomy.
 
 ### 1.2.0
 

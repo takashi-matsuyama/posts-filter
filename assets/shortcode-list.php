@@ -21,6 +21,8 @@ if (!class_exists('CCC_Terms_Filter_Ajax_ShortCode_List')) {
         "posts_per_page" => '',
         "class" => '',
         "style" => '',
+        "taxonomy_name" => '',
+        "term_parent_slug" => '',
         "locale" => '',
       ), $atts);
       if ($atts['post_type']) {
@@ -56,13 +58,23 @@ if (!class_exists('CCC_Terms_Filter_Ajax_ShortCode_List')) {
       /*** 初期設定 ***/
       /* URLからタームとタクソノミーのオブジェクトを取得 */
       $term_object = get_queried_object(); // タームオブジェクトを取得
+      /* タクソノミー名 */
+      if ($atts['taxonomy_name']) {
+        $my_term_taxonomy = $atts['taxonomy_name'];
+      } else {
+        $my_term_taxonomy = $term_object->taxonomy ? $term_object->taxonomy : 'category'; // タクソノミー名
+      }
+      /* タームスラッグ */
+      if ($atts['term_parent_slug']) {
+        $my_term_slug = $atts['term_parent_slug']; // 親タームスラッグ限定
+      } else {
+        $my_term_slug = $term_object->slug; // タームスラッグ
+      }
+      $my_term_name = $term_object->name; // タームタイトル
+      $my_term_parent = $term_object->parent; // 親カテゴリーのID。なければ0（つまり親）
 
       $my_term_id = $term_object->term_id; // タームスID
-      $my_term_slug = $term_object->slug; // タームスラッグ
-      $my_term_name = $term_object->name; // タームタイトル
       $my_term_description = $term_object->description; // タームディスクリプション
-      $my_term_parent = $term_object->parent; // 親カテゴリーのID。なければ0（つまり親）
-      $my_term_taxonomy = $term_object->taxonomy; // タクソノミー名
       if ($my_term_parent === 0) {
         $my_term_hierarchy = 'parent';
       } else {

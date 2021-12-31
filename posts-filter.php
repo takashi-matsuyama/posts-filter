@@ -3,7 +3,7 @@
  * Plugin Name: Posts Filter
  * Plugin URI: https://wordpress.org/plugins/posts-filter
  * Description: Filter posts by taxonomy terms with Ajax.
- * Version: 1.2.0
+ * Version: 1.3.0
  * Requires at least: 4.8
  * Requires PHP: 5.4.0
  * Author: Takashi Matsuyama
@@ -54,6 +54,7 @@ if( ! class_exists( 'CCC_Terms_Filter_Ajax' ) ) {
   /*** How to use this Shortcode ***/
   /*
   * [ccc_posts_filter_list post_type="string" posts_per_page="int" class="string" style="string"]
+  * [ccc_posts_filter_list term_parent_slug="string" taxonomy_name="string"]
   */
   require( CCCTERMSFILTERAJAX_PLUGIN_PATH .'/assets/shortcode-list.php' );
 
