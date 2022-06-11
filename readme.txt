@@ -3,9 +3,9 @@ Contributors: takashimatsuyama
 Donate link:
 Tags: posts filter, filter, taxonomy, term
 Requires at least: 4.8
-Tested up to: 5.8
+Tested up to: 6.0
 Requires PHP: 5.4.0
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 

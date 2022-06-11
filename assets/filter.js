@@ -390,14 +390,13 @@
       /* 標準のタクソノミー用 */
       var data_standard = $(this).data(select_taxonomy);
       if (data_standard) {
-        var data_standard_val = $(
-          "[name='" + data_standard + "[]']:checked"
-        ).val();
-        eval("var taxname_" + data_standard + "=" + data_standard_val);
-        //console.log(eval('taxname_'+ data_standard));
-        data_set["taxname_" + data_standard] = eval("taxname_" + data_standard);
+        data_set["taxname_" + data_standard] = null;
+        $("[name='" + data_standard + "[]']:checked").each(function () {
+          data_set["taxname_" + data_standard] = this.value;
+        });
       } //endif
     });
+    //console.log(data_set);
     /*** Ajaxフック用 ***/
     data_set["action"] = CCC_TERMS_FILTER_AJAX.action;
     data_set["nonce"] = CCC_TERMS_FILTER_AJAX.nonce;
